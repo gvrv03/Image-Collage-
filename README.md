@@ -7,7 +7,7 @@
 ![image](https://github.com/gvrv03/Image-Collage-/assets/129073397/1ea94a5a-2694-46eb-a30c-0794df608358)
 
 ## Demo
-- [Image Collage](imagecollage.vercel.app)
+- [Image Collage](https://imagecollage.vercel.app/)
 
 ## Screenshots
 
