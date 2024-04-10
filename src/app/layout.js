@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         <UseStoreContextProvider>
           <Toaster position="top-center" reverseOrder={false} />
           <Navbar />
-          <div className="mt-20 md:mt-5 ">{children}</div>{" "}
+          <div className=" mt-20 md:mt-[100px] ">{children}</div>{" "}
         </UseStoreContextProvider>
       </body>
     </html>

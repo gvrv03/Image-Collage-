@@ -40,6 +40,22 @@ export function UseStoreContextProvider({ children }) {
       toast.error("Error Occur : ", error);
     }
   };
+
+  const handleImageUpload = (e) => {
+    try {
+      const files = Array.from(e.target.files);
+      const newImages = files.map((file) => ({
+        name: file.name,
+        url: URL.createObjectURL(file),
+      }));
+      setimages((prevImages) => [...prevImages, ...newImages]);
+
+      toast.success("Image Uploaded");
+    } catch (error) {
+      toast.error("Error Occured");
+    }
+  };
+
   return (
     <useStoreContext.Provider
       value={{
@@ -55,6 +71,7 @@ export function UseStoreContextProvider({ children }) {
         borderColor,
         setborderColor,
         borderSize,
+        handleImageUpload,
         setborderSize,
       }}
     >

@@ -16,42 +16,47 @@ const Sidebar = () => {
     cols,
     setborderColor,
     setborderSize,
+    handleImageUpload,
   } = useAppStore();
-
-  const handleImageUpload = (e) => {
-    try {
-      const files = Array.from(e.target.files);
-      const newImages = files.map((file) => ({
-        name: file.name,
-        url: URL.createObjectURL(file),
-      }));
-      setimages((prevImages) => [...prevImages, ...newImages]);
-
-      toast.success("Image Uploaded");
-    } catch (error) {
-      toast.error("Error Occured");
-    }
-  };
 
   return (
     <div className="bg-white p-5  w-full md:w-[20%] rounded-md ">
       {/* Image Upload Components */}
       <div>
-        <div className="flex border p-2  gap-2 outline-none items-center font-semibold text-blue-600">
-          <i className="uil uil-cloud-upload" />
-          <input
+        <div className="flex gap-2 outline-none items-center font-semibold text-blue-600">
+          <i className="uil text-xl uil-cloud-upload" />
+          <p>Uploaded Image</p>
+          {/* <input
             onChange={handleImageUpload}
             type="file"
             accept="image/*"
             multiple
             className=" file:cursor-pointer file:bg-transparent file:text-black text-white  file:border-none  file:outline-none"
+          /> */}
+        </div>
+
+        <div className="mt-5 w-full relative grid place-items-center h-full ">
+          <input
+            onChange={handleImageUpload}
+            type="file"
+            draggable={true}
+            accept="image/*"
+            multiple
+            className="z-30 file:cursor-pointer file:bg-transparent file:border  file:text-transparent  file:border-dashed file:text-black text-white file:rounded-md  file:border-blue-400 file:py-10 file:px-20 file:w-full w-full file:outline-none"
           />
+          <div className=" absolute flex items-center gap-2">
+            <i className="uil uil-image-upload text-blue-600 text-2xl" />
+            <p className="text-gray-400 text-xs">
+              Upload Or Drag the Image
+            </p>{" "}
+          </div>
         </div>
 
         <div className="gap-2 flex flex-col mt-5">
           {images.length === 0 ? (
-            <div className="text-sm p-5 h-60 border-dashed border grid place-items-center">
-              No Image Found
+            <div className="text-sm p-5 h-60 border-dashed border flex flex-col items-center ">
+              <img src="/notfound.png" alt="notfound" className="w-40" />
+              <p>No Images Found</p>{" "}
             </div>
           ) : (
             <div className="gap-2 flex  h-60 overflow-y-scroll hide-scrollbar  flex-col border border-dashed p-2 ">
@@ -125,8 +130,9 @@ const Sidebar = () => {
       </div>
 
       <button
-        className="flex items-center   justify-center bg-blue-600 px-20 w-full rounded-md py-3 text-white font-semibold mt-5"
+        className="flex items-center  disabled:bg-blue-300 justify-center bg-blue-600 px-20 w-full rounded-md py-3 text-white font-semibold mt-5"
         onClick={handleGeneratePDF}
+        disabled={images.length === 0 ? true : false}
       >
         {download ? (
           <Spinner />

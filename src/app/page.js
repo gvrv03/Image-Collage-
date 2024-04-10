@@ -6,7 +6,7 @@ import Sidebar from "@/Components/Sidebar";
 export default function Home() {
 
   return (
-    <main className=" w-full  md:p-0 p-5 md:h-screen place-items-center grid">
+    <main className=" w-full    place-items-center grid">
       <div className=" flex  flex-col md:flex-row gap-5 w-full  h-[82vh] container   m-auto ">
         <Sidebar />
         <Canvas />
